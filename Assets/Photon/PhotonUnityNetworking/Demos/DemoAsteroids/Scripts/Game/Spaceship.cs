@@ -9,9 +9,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections;
-
 using UnityEngine;
-
 using Photon.Pun.UtilityScripts;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -33,6 +31,7 @@ namespace Photon.Pun.Demo.Asteroids
         private new Rigidbody rigidbody;
         private new Collider collider;
         private new Renderer renderer;
+        
 #pragma warning restore 0109
 
         private float rotation = 0.0f;
@@ -159,6 +158,17 @@ namespace Photon.Pun.Demo.Asteroids
             }
         }
 
+        public void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Bullet"))
+            {
+                if (renderer.material.color != AsteroidsGame.GetColor(photonView.Owner.GetPlayerNumber()))
+                {
+                    DestroySpaceship();
+                }
+
+            }
+        }
         [PunRPC]
         public void Fire(Vector3 position, Quaternion rotation, PhotonMessageInfo info)
         {

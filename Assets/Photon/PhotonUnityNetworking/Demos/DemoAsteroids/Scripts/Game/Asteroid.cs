@@ -64,7 +64,6 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 return;
             }
-
             if (collision.gameObject.CompareTag("Bullet"))
             {
                 if (photonView.IsMine)
@@ -89,9 +88,7 @@ namespace Photon.Pun.Demo.Asteroids
                 }
             }
         }
-
         #endregion
-
         private void DestroyAsteroidGlobally()
         {
             isDestroyed = true;

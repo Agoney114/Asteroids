@@ -215,7 +215,6 @@ namespace Photon.Pun.Demo.Asteroids
 
             SetActivePanel(SelectionPanel.name);
         }
-
         public void OnCreateRoomButtonClicked()
         {
             string roomName = RoomNameInputField.text;
