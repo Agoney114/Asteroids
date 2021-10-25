@@ -145,6 +145,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             if (photonView.IsMine)
             {
+                
                 object lives;
                 if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(AsteroidsGame.PLAYER_LIVES, out lives))
                 {
@@ -161,12 +162,11 @@ namespace Photon.Pun.Demo.Asteroids
         public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Bullet"))
-            {
-                if (renderer.material.color != AsteroidsGame.GetColor(photonView.Owner.GetPlayerNumber()))
+            {               
+                if (!photonView.IsMine)
                 {
-                    DestroySpaceship();
+                    gameObject.GetComponent<PhotonView>().RPC("DestroySpaceship", RpcTarget.All);                   
                 }
-
             }
         }
         [PunRPC]

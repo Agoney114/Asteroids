@@ -25,9 +25,11 @@ namespace Photon.Pun.Demo.Asteroids
             transform.forward = originalDirection;
 
             Rigidbody rigidbody = GetComponent<Rigidbody>();
-            Renderer renderer = GetComponent<Renderer>();
+          
             rigidbody.velocity = originalDirection * 200.0f;
             rigidbody.position += rigidbody.velocity * lag;
+
+            Renderer renderer = GetComponent<Renderer>();
             renderer.material.color = AsteroidsGame.GetColor(Owner.GetPlayerNumber());  //Las balas de cada nave salen del mismo color de la nave
         }
     }
